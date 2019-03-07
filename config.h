@@ -171,8 +171,10 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
 
-	{ ControlMask,            	XK_k,  		    kscrollup,      {.i =  1} },
-	{ ControlMask,              XK_j,   	    kscrolldown,    {.i =  1} },
+	// { ControlMask,            	XK_k,  		    kscrollup,      {.i =  1} },
+	// { ControlMask,              XK_j,   	    kscrolldown,    {.i =  1} },
+	{ ControlMask,            	XK_Up,          kscrollup,      {.i =  1} },
+	{ ControlMask,              XK_Down,        kscrolldown,    {.i =  1} },
 	{ ControlMask,	            XK_u,	    	kscrollup,      {.i = -1} },
 	{ ControlMask,  		    XK_d,	    	kscrolldown,   	{.i = -1} },
 	{ ControlMask|ShiftMask,    XK_K,           zoom,           {.f = +1} },
