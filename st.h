@@ -82,10 +82,10 @@ void draw(void);
 
 void kscrolldown(const Arg *);
 void kscrollup(const Arg *);
-void iso14755(const Arg *);
 void printscreen(const Arg *);
 void printsel(const Arg *);
 void sendbreak(const Arg *);
+void externalpipe(const Arg *);
 void toggleprinter(const Arg *);
 
 int tattrset(int);
@@ -120,6 +120,7 @@ extern char *vtiden;
 extern char *worddelimiters;
 extern int allowaltscreen;
 extern char *termname;
+extern int usealtcolors;
 extern unsigned int tabspaces;
 extern unsigned int defaultfg;
 extern unsigned int defaultbg;

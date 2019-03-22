@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "mono:pixelsize=20:antialias=true:autohint=true";
-static int borderpx = 6;
+static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -103,6 +103,27 @@ static const char *colorname[] = {
 	"#fdf6e3",  /* 15: brwhite  */
 };
 
+/* Terminal colors for alternate (light) palette */
+static const char *altcolorname[] = {
+	/* solarized light */
+	"#eee8d5",  /*  0: black    */
+	"#dc322f",  /*  1: red      */
+	"#859900",  /*  2: green    */
+	"#b58900",  /*  3: yellow   */
+	"#268bd2",  /*  4: blue     */
+	"#d33682",  /*  5: magenta  */
+	"#2aa198",  /*  6: cyan     */
+	"#073642",  /*  7: white    */
+	"#fdf6e3",  /*  8: brblack  */
+	"#cb4b16",  /*  9: brred    */
+	"#93a1a1",  /* 10: brgreen  */
+	"#839496",  /* 11: bryellow */
+	"#657b83",  /* 12: brblue   */
+	"#6c71c4",  /* 13: brmagenta*/
+	"#586e75",  /* 14: brcyan   */
+	"#002b36",  /* 15: brwhite  */
+};
+
 
 /*
  * Default colors (colorname index)
@@ -152,6 +173,9 @@ static MouseShortcut mshortcuts[] = {
 	{ Button5,              XK_ANY_MOD,     "\005" },
 };
 
+static char *openurlcmd[] = { "/bin/sh", "-c",
+	"link-grabber", "externalpipe", NULL };
+
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
@@ -168,8 +192,10 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
+
+
 
 	// { ControlMask,            	XK_k,  		    kscrollup,      {.i =  1} },
 	// { ControlMask,              XK_j,   	    kscrolldown,    {.i =  1} },
@@ -178,12 +204,16 @@ static Shortcut shortcuts[] = {
 
 	{ ControlMask|ShiftMask,    XK_Up,	    	kscrollup,      {.i = -1} },
 	{ ControlMask|ShiftMask,    XK_Down,	   	kscrolldown,   	{.i = -1} },
-	{ ControlMask,	            XK_u,	    	kscrollup,      {.i = -1} },
-	{ ControlMask,  		    XK_d,	    	kscrolldown,   	{.i = -1} },
+	// { ControlMask,	            XK_u,	    	kscrollup,      {.i = -1} },
+	// { ControlMask,  		    XK_d,	    	kscrolldown,   	{.i = -1} },
 
 	{ ControlMask|ShiftMask,    XK_K,           zoom,           {.f = +1} },
 	{ ControlMask|ShiftMask,    XK_J,           zoom,           {.f = -1} },
+
+	{ TERMMOD, XK_U, externalpipe, { .v = openurlcmd } },
+	{ XK_ANY_MOD,           XK_F6,          swapcolors,     {.i =  0} },
 };
+
 
 /*
  * Special keys (change & recompile st.info accordingly)
