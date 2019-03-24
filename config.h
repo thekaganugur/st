@@ -174,7 +174,7 @@ static MouseShortcut mshortcuts[] = {
 };
 
 static char *openurlcmd[] = { "/bin/sh", "-c",
-	"link-grabber", "externalpipe", NULL };
+	"linkgrabber", "externalpipe", NULL };
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
